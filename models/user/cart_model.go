@@ -21,17 +21,17 @@ import (
 */
 
 type Cart struct {
-	CartID    primitive.ObjectID `json:"cartid" bson:"_id" validate:"required"`
-	ProductID primitive.ObjectID `json:"productid" bson:"productid" validate:"required"`
+	CartID    primitive.ObjectID `json:"cart_id" bson:"_id" validate:"required"`
+	ProductID primitive.ObjectID `json:"product_id" bson:"product_id" validate:"required"`
 	Quantity  int                `json:"quantity" bson:"quantity" validate:"required"`
-	CreatedAt time.Time          `json:"created_at" bson:"createdat" validate:"required"`
-	UpdatedAt time.Time          `json:"updated_at" bson:"updatedat" validate:"required"`
+	CreatedAt time.Time          `json:"created_at" bson:"created_at" validate:"required"`
+	UpdatedAt time.Time          `json:"updated_at" bson:"updated_at" validate:"required"`
 }
 
 type CartWithoutId struct {
-	CartID    primitive.ObjectID `json:"cartid" bson:"_id"`
-	ProductID primitive.ObjectID `json:"productid" bson:"productid" validate:"required"`
+	CartID    primitive.ObjectID `json:"cart_id" bson:"_id"`
+	ProductID primitive.ObjectID `json:"product_id" bson:"product_id" validate:"required"`
 	Quantity  int                `json:"quantity" bson:"quantity" validate:"required"`
-	CreatedAt time.Time          `json:"created_at" bson:"createdat" validate:"required"`
-	UpdatedAt time.Time          `json:"updated_at" bson:"updatedat" validate:"required"`
+	CreatedAt time.Time          `json:"created_at" bson:"created_at" validate:"required"`
+	UpdatedAt time.Time          `json:"updated_at" bson:"updated_at" validate:"required"`
 }
