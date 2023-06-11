@@ -2,6 +2,7 @@ package main
 
 import (
 	"ecommerce/database"
+	"ecommerce/middlewares"
 	routers "ecommerce/routes"
 	"net/http"
 	"os"
@@ -35,7 +36,8 @@ func main() {
 	authRoutes := router.Group("/auth")
 	routers.GetAuthRoutes(authRoutes)
 
-	// Set up authentication routes under /auth
+	// Use Authentication middleware
+	router.Use(middlewares.Authentication())
 
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{
