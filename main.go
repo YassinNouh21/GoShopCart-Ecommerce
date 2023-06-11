@@ -39,6 +39,10 @@ func main() {
 	// Use Authentication middleware
 	router.Use(middlewares.Authentication())
 
+	// Set up user-related routes under /user and product-related routes under /product
+	userRoutes := router.Group("/user")
+	routers.AddressRoutes(userRoutes)
+
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": "Route not defined",
