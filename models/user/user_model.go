@@ -32,11 +32,10 @@ type User struct {
 	Email          string             `json:"email" validate:"email" bson:"email"`
 	Password       string             `json:"password" bson:"password" validate:"required,min=6"`
 	Token          string             `json:"token" bson:"token"`
-	RefreshToken   string             `json:"refreshtoken" bson:"refreshtoken"`
-	CreatedAt      time.Time          `json:"createdat" bson:"createdat"`
-	UpdatedAt      time.Time          `json:"updatedat" bson:"updatedat"`
-	UserID         string             `json:"userid"  bson:"userid"`
-	AddressDetails []Address          `json:"address" bson:"addressdetails"`
-	OrderStatus    []Order            `json:"orderstatus"`
-	UserCart       []Cart             `json:"usercart"`
+	RefreshToken   string             `json:"refresh_token" bson:"refresh_token"`
+	CreatedAt      time.Time          `json:"created_at" bson:"created_at"`
+	UpdatedAt      time.Time          `json:"updated_at" bson:"updated_at"`
+	AddressDetails []Address          `json:"address" bson:"address_details"`
+	OrderStatus    []Order            `json:"order_status"`
+	UserCart       []Cart             `json:"user_cart"`
 }
