@@ -43,6 +43,7 @@ func main() {
 	userRoutes := router.Group("/user")
 	routers.ProfileRoutes(userRoutes)
 	routers.AddressRoutes(userRoutes)
+	routers.CartRoutes(userRoutes)
 
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{
