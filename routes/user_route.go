@@ -18,3 +18,12 @@ func AddressRoutes(addressRoutes *gin.RouterGroup) {
 	addressRoutes.DELETE("/address", user.DeleteAllAddressController)
 	addressRoutes.DELETE("/address/:address_id", user.DeleteAddressWithIdController)
 }
+
+// CartRoutes sets up the cart routes for the application.
+func CartRoutes(cartRoutes *gin.RouterGroup) {
+	cartRoutes.GET("/cart", user.GetCartController)
+	cartRoutes.POST("/cart", user.AddCartController)
+	cartRoutes.DELETE("/cart", user.DeleteAllCartController)
+	// cartRoutes.DELETE("/cart/:cart_id", user.DeleteCartWithIdController)
+	cartRoutes.PUT("/cart/:cart_id", user.UpdateCartController)
+}
