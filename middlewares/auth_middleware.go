@@ -10,7 +10,6 @@ Functions:
 
 import (
 	"ecommerce/helpers"
-	"log"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -21,7 +20,6 @@ func Authentication() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		clientToken := c.Request.Header.Get("token")
 		authHeader := c.GetHeader("Authorization")
-		log.Println("midlleware: authHeader", authHeader)
 		clientToken = strings.TrimPrefix(authHeader, "Bearer ")
 		if clientToken == "" {
 			c.JSON(401, gin.H{
@@ -30,10 +28,8 @@ func Authentication() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		log.Println("midlleware: clientToken", clientToken[0:5])
 
 		userClaim, err := helpers.ValidateToken(clientToken)
-		log.Println("midlleware: userclaim", userClaim)
 
 		if err != "" {
 			c.JSON(401, gin.H{
