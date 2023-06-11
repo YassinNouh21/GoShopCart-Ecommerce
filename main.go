@@ -41,6 +41,7 @@ func main() {
 
 	// Set up user-related routes under /user and product-related routes under /product
 	userRoutes := router.Group("/user")
+	routers.ProfileRoutes(userRoutes)
 	routers.AddressRoutes(userRoutes)
 
 	router.NoRoute(func(c *gin.Context) {
