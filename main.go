@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ecommerce/database"
 	routers "ecommerce/routes"
 	"net/http"
 	"os"
@@ -9,7 +10,13 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// initializeDB initializes the database client and collections.
+func initializeDB() {
+	database.InitializeMongoDBCollections()
+}
+
 func main() {
+	initializeDB()
 	// Load environment variables from .env file
 	err := godotenv.Load(".env")
 	if err != nil {
