@@ -15,11 +15,12 @@ import (
 )
 
 var (
-	ErrUnauthorized   = errors.New("Unauthorized")
-	ErrInvalidID      = errors.New("Invalid id")
-	ErrUserNotFound   = errors.New("User not found")
-	ErrInvalidRequest = errors.New("Invalid request body")
-	ErrUpdateFailed   = errors.New("Failed to update user")
+	ErrUnauthorized    = errors.New("Unauthorized")
+	ErrInvalidID       = errors.New("Invalid id")
+	ErrUserNotFound    = errors.New("User not found")
+	ErrInvalidRequest  = errors.New("Invalid request body")
+	ErrUpdateFailed    = errors.New("Failed to update user")
+	ErrProductNotFound = errors.New("Product not found")
 )
 
 // profileRespose represents the response structure for the profile request.
