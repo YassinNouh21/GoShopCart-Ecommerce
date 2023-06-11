@@ -44,6 +44,10 @@ func main() {
 	routers.ProfileRoutes(userRoutes)
 	routers.AddressRoutes(userRoutes)
 	routers.CartRoutes(userRoutes)
+	// Set up product-related routes under /product
+	productRoutes := router.Group("/product")
+	routers.ProductRoutes(productRoutes)
+	routers.ProductFilterRoutes(productRoutes)
 
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{
