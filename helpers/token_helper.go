@@ -14,7 +14,7 @@ import (
 	"github.com/golang-jwt/jwt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
+	//"go.mongodb.org/mongo-driver/mongo"
 )
 
 /*
@@ -35,7 +35,7 @@ import (
 */
 
 // mongoDBCollectionUser represents the MongoDB collection for user data.
-var mongoDBCollectionUser *mongo.Collection = database.DB.UserCollection
+//var mongoDBCollectionUser mongo.Collection = *database.DB.UserCollection
 
 // UserClaims represents the custom claims for a JWT token.
 type UserClaims struct {
@@ -145,7 +145,7 @@ func ValidateToken(verifyToken string) (claim *UserClaims, errorMessage string) 
 
 	// Check if the user exists in the database
 	var user userModel.User
-	err = mongoDBCollectionUser.FindOne(context.Background(), bson.M{"_id": &userIdPrimitive}).Decode(&user)
+	err = database.DB.UserCollection.FindOne(context.Background(), bson.M{"_id": &userIdPrimitive}).Decode(&user)
 	if err != nil {
 		return nil, "user not found"
 	}
@@ -188,7 +188,7 @@ func ValidateRefreshToken(verifyToken string) (claim *UserClaims, errorMessage s
 
 	// Check if the user exists in the database
 	var user userModel.User
-	err = mongoDBCollectionUser.FindOne(context.Background(), bson.M{"_id": &userIdPrimitive}).Decode(&user)
+	err = database.DB.UserCollection.FindOne(context.Background(), bson.M{"_id": &userIdPrimitive}).Decode(&user)
 	if err != nil {
 		return nil, "user not found"
 	}
@@ -227,7 +227,7 @@ func GenerateNewAccessToken(refreshToken string) (signedToken string, err error)
 		return "", errors.New("invalid user id")
 	}
 
-	err = mongoDBCollectionUser.FindOne(ctx, bson.M{"_id": &userIdPrimitive}).Decode(&user)
+	err = database.DB.UserCollection.FindOne(ctx, bson.M{"_id": &userIdPrimitive}).Decode(&user)
 	if err != nil {
 		return "", errors.New("user not found")
 	}
@@ -237,7 +237,7 @@ func GenerateNewAccessToken(refreshToken string) (signedToken string, err error)
 		return "", errors.New("error while generating new token")
 	}
 
-	_, err = mongoDBCollectionUser.UpdateOne(ctx, bson.M{"_id": &userIdPrimitive}, bson.M{"$set": bson.M{"token": signedToken}})
+	_, err = database.DB.UserCollection.UpdateOne(ctx, bson.M{"_id": &userIdPrimitive}, bson.M{"$set": bson.M{"token": signedToken}})
 	if err != nil {
 		return "", errors.New("error while updating token")
 	}

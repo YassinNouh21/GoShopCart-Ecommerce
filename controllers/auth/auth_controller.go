@@ -7,7 +7,6 @@ import (
 	userModel "ecommerce/models/user"
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 
@@ -15,7 +14,6 @@ import (
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
 var (
@@ -28,8 +26,6 @@ var (
 	errUpdatingToken      = errors.New("error while updating token")
 	errUserNotFoundByID   = errors.New("user not found with this ID")
 )
-
-var userCollection *mongo.Collection = database.DB.UserCollection
 
 /*
 SignUpController handles the user registration process.
@@ -62,7 +58,7 @@ func SignUpController(context *gin.Context) {
 		return
 	}
 
-	count, err := userCollection.CountDocuments(ctx, bson.M{"email": user.Email})
+	count, err := database.DB.UserCollection.CountDocuments(ctx, bson.M{"email": user.Email})
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -100,7 +96,7 @@ func SignUpController(context *gin.Context) {
 	user.OrderStatus = []userModel.Order{}
 	user.UserCart = []userModel.Cart{}
 
-	_, err = userCollection.InsertOne(ctx, user)
+	_, err = database.DB.UserCollection.InsertOne(ctx, user)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -153,11 +149,9 @@ func SignInController(context *gin.Context) {
 		return
 	}
 
-	err := userCollection.FindOne(ctx, bson.M{"email": user.Email}).Decode(&loginUser)
+	err := database.DB.UserCollection.FindOne(ctx, bson.M{"email": user.Email}).Decode(&loginUser)
 	defer cancel()
-	log.Println("login user", err)
 
-	log.Println("login user", loginUser)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
 			"error": errUserNotFound.Error(),
@@ -186,7 +180,6 @@ func SignInController(context *gin.Context) {
 
 	err = helpers.UpdateToken(accessToken, refreshToken, loginUser.ID)
 	if !isValid {
-		log.Println("password is incorrect", user.Password)
 		context.JSON(http.StatusInternalServerError, gin.H{
 			"error": errIncorrectPassword.Error(),
 		})
