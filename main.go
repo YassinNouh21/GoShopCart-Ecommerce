@@ -1,6 +1,7 @@
 package main
 
 import (
+	routers "ecommerce/routes"
 	"net/http"
 	"os"
 
@@ -24,6 +25,8 @@ func main() {
 	router.Use(gin.Logger())
 
 	// Initialize database client and collections
+	authRoutes := router.Group("/auth")
+	routers.GetAuthRoutes(authRoutes)
 
 	// Set up authentication routes under /auth
 
