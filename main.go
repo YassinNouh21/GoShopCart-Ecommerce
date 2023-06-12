@@ -1,15 +1,24 @@
 package main
 
 import (
-	"ecommerce/database"
-	"ecommerce/middlewares"
-	routers "ecommerce/routes"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/database"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/middlewares"
+	routers "github.com/YassinNouh21/GoShopCart-Ecommerce/routes"
 	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
+
+func envPortOr(port string) string {
+	// If `PORT` variable in environment exists, return it
+	if envPort := os.Getenv("PORT"); envPort != "" {
+		return ":" + envPort
+	}
+	// Otherwise, return the value of `port` variable from function argument
+	return ":" + port
+}
 
 // initializeDB initializes the database client and collections.
 func initializeDB() {
@@ -56,5 +65,5 @@ func main() {
 	})
 
 	// Run the server on the specified port
-	router.Run(port)
+	router.Run(":" + port)
 }
