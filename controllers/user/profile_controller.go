@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"ecommerce/database"
-	userModels "ecommerce/models/user"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/database"
+	userModels "github.com/YassinNouh21/GoShopCart-Ecommerce/models/user"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"

@@ -2,10 +2,10 @@ package helpers
 
 import (
 	"context"
-	"ecommerce/database"
-	userModel "ecommerce/models/user"
 	"errors"
 	"fmt"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/database"
+	userModel "github.com/YassinNouh21/GoShopCart-Ecommerce/models/user"
 	"log"
 	"os"
 	"strings"

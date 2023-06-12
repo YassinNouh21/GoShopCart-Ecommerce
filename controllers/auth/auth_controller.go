@@ -2,11 +2,11 @@ package auth
 
 import (
 	goContext "context"
-	"ecommerce/database"
-	helpers "ecommerce/helpers"
-	userModel "ecommerce/models/user"
 	"errors"
 	"fmt"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/database"
+	helpers "github.com/YassinNouh21/GoShopCart-Ecommerce/helpers"
+	userModel "github.com/YassinNouh21/GoShopCart-Ecommerce/models/user"
 	"net/http"
 	"time"
 

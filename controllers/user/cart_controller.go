@@ -2,10 +2,10 @@ package user
 
 import (
 	"context"
-	database "ecommerce/database"
-	"ecommerce/models/user"
 	"errors"
 	"fmt"
+	database "github.com/YassinNouh21/GoShopCart-Ecommerce/database"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/models/user"
 	"log"
 	"net/http"
 	"time"

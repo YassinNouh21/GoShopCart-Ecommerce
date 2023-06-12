@@ -2,8 +2,8 @@ package product
 
 import (
 	"context"
-	"ecommerce/database"
-	productModel "ecommerce/models/product"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/database"
+	productModel "github.com/YassinNouh21/GoShopCart-Ecommerce/models/product"
 	"net/http"
 	"time"
 

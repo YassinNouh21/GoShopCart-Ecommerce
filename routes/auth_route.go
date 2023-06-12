@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"ecommerce/controllers/auth"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/controllers/auth"
 
 	"github.com/gin-gonic/gin"
 )

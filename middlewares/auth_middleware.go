@@ -9,7 +9,7 @@ Functions:
 */
 
 import (
-	"ecommerce/helpers"
+	"github.com/YassinNouh21/GoShopCart-Ecommerce/helpers"
 	"strings"
 
 	"github.com/gin-gonic/gin"
