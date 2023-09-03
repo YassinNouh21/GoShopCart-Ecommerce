@@ -7,9 +7,9 @@ This project is an e-commerce back-end developed using the Golang Gin framework.
 ## Installation
 
 1. Clone the repository:
-
+   
    ```bash
-   git clone https://github.com/your-username/your-project.git
+   git clone https://github.com/YassinNouh21/GoShopCart-Ecommerce.git
    ```
 
 2. Install the dependencies:
